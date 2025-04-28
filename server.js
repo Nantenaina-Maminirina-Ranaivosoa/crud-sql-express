@@ -26,3 +26,24 @@ db.run(`CREATE TABLE IF NOT EXISTS posts (
     title TEXT,
     content TEXT
   )`);
+
+
+
+  // Routes
+
+// GET - Récupérer tous les posts
+app.get('/posts', (req, res) => {
+    db.all('SELECT * FROM posts', (err, rows) => {
+      if (err) {
+        res.status(500).json({ error: err.message });
+      } else {
+        res.json(rows);
+      }
+    });
+  });
+
+
+  // Démarrer le serveur
+app.listen(PORT, () => {
+    console.log(`Serveur en cours d'exécution sur http://localhost:${PORT}`);
+  });
