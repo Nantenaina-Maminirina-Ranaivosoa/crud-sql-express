@@ -19,3 +19,10 @@ const db = new sqlite3.Database('./database.db', (err) => {
       console.log('Connecté à la base de données SQLite');
     }
   });
+
+  // Créer la table si elle n'existe pas
+db.run(`CREATE TABLE IF NOT EXISTS posts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT,
+    content TEXT
+  )`);
