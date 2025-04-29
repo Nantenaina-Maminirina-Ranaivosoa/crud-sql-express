@@ -43,7 +43,23 @@ app.get('/posts', (req, res) => {
   });
 
 
+   // POST - Créer un nouveau post
+app.post('/posts', (req, res) => {
+    const { title, content } = req.body;
+    db.run('INSERT INTO posts (title, content) VALUES (?, ?)', [title, content], function(err) {
+      if (err) {
+        res.status(500).json({ error: err.message });
+      } else {
+        res.json({ id: this.lastID, title, content });
+      }
+    });
+  });
+
+
   // Démarrer le serveur
 app.listen(PORT, () => {
     console.log(`Serveur en cours d'exécution sur http://localhost:${PORT}`);
   });
+
+
+ 
