@@ -56,6 +56,21 @@ app.post('/posts', (req, res) => {
   });
 
 
+
+// PUT - Modifier un post
+app.put('/posts/:id', (req, res) => {
+  const { id } = req.params;
+  const { title, content } = req.body;
+  db.run('UPDATE posts SET title = ?, content = ? WHERE id = ?', [title, content, id], function(err) {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    } else {
+      res.json({ message: 'Post mis à jour' });
+    }
+  });
+});
+
+
   // Démarrer le serveur
 app.listen(PORT, () => {
     console.log(`Serveur en cours d'exécution sur http://localhost:${PORT}`);
