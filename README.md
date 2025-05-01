@@ -1,4 +1,5 @@
-📚 CRUD App avec Express et SQLite
+#📚 CRUD App avec Express et SQLite
+
 Ce projet est une petite application backend qui permet de Créer, Lire, Mettre à jour et Supprimer (CRUD) des articles de blog en utilisant Express.js et SQLite.
 
 🚀 Fonctionnalités
