@@ -71,6 +71,19 @@ app.put('/posts/:id', (req, res) => {
 });
 
 
+// DELETE - Supprimer un post
+app.delete('/posts/:id', (req, res) => {
+  const { id } = req.params;
+  db.run('DELETE FROM posts WHERE id = ?', id, function(err) {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    } else {
+      res.json({ message: 'Post supprimé' });
+    }
+  });
+});
+
+
   // Démarrer le serveur
 app.listen(PORT, () => {
     console.log(`Serveur en cours d'exécution sur http://localhost:${PORT}`);
